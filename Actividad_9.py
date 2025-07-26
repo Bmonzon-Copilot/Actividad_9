@@ -59,5 +59,19 @@ def menu():
         print("3. Mostrar total de destinos registrados")
         print("4. Salir")
 
+        opcion = input("Ingrese una opcion: ").strip()
 
+        if opcion=="1":
+            nuevos=ingreso_cliente()
+            clientes.update(nuevos)
+        elif opcion=="2":
+            mostrar_clientes(clientes)
+        elif opcion=="3":
+            total=contar_destinos(clientes)
+            print(f"\nTotal de destinos: {total}")
+        elif opcion=="4":
+            print("Programa finalizado...")
+            break
+        else:
+            print("Opcion invalida, elija otra opcion")
 menu()
