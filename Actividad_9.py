@@ -11,7 +11,7 @@ def ingreso_cliente():
                 else:
                     break
             nombre = input("Ingrese el nombre del cliente: ")
-            destinos = []
+            destinos = [] #lista para almacenar los destinos de cada cliente
             while True:
                 try:
                     cant_destinos = int(input("Cuántos destinos quiere visitar (1-5): "))
@@ -29,5 +29,35 @@ def ingreso_cliente():
     except ValueError:
         print("Información inválida. Intente de nuevo.")
 
-print(ingreso_cliente())
+def mostrar_clientes(clientes):
+    if not clientes:
+        print("\nNo hay clientes registrados.")
+    else:
+        print("\nLista de clientes y destinos:")
+        for codigo, datos in clientes.items():
+            nombre = datos["nombre"]
+            destinos = ', '.join(datos["destinos"])
+            print(f"- Código: {codigo}, Nombre: {nombre}, Destinos: {destinos}")
 
+def contar_destinos(clientes):
+    codigos=list(clientes.keys())
+    return cantidad_destinos(clientes,codigos)
+
+def cantidad_destinos(clientes,codigos):
+    if not codigos:
+        return 0
+    codigo_actual=codigos[0]
+    destinos_actuales=len(clientes[codigo_actual]["destinos"])
+    return destinos_actuales+cantidad_destinos(clientes,codigos[1:])
+
+def menu():
+    clientes = {}
+    while True:
+        print("\n--- MENÚ PRINCIPAL ---")
+        print("1. Registrar clientes")
+        print("2. Mostrar clientes y destinos")
+        print("3. Mostrar total de destinos registrados")
+        print("4. Salir")
+
+
+menu()
